@@ -1,0 +1,15 @@
+services:
+  near-miss-error:
+    image: ghcr.io/psalmpson/near-miss-error:latest
+    build: .   # fallback: builds locally if the image can't be pulled
+    container_name: near-miss-error
+    restart: unless-stopped
+    ports:
+      - "4400:4400"
+    environment:
+      TZ: America/Jamaica
+      # PIN needed to open Settings (drug / pharmacy lists) and to delete records.
+      ADMIN_PIN: "change-me"
+      PHARMACIES: "DS Gordon Town"
+    volumes:
+      - ./data:/data
